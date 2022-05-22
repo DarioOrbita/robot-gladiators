@@ -1,3 +1,13 @@
+//game states
+
+//WIN: player has defeated all enemy robots
+
+// * fight each robot until defeated
+
+//LOSE: player health reaches 0 (or less)
+
+
+
 
 //initializing all player variables
 var playerName = window.prompt("what is your robot's name?");
@@ -8,17 +18,16 @@ var playerAttack = 10;
 
 var playerMoney = 10;
 
-//log multiple values at once:
-console.log(playerName, playerHealth, playerAttack);
 
-//initializing all enemy variables
-var enemyName = "Roborto"
+//initializing all enemy variables 
+var enemyNames = ["Roborto", "Amy Android", "Robo Trumble"];
 
 var enemyHealth = 50;
 
 var enemyAttack = 12;
 
-var fight = function() {
+
+var fight = function(enemyName) {
 
     //alert that the round is starting
     window.alert("Welcome to Robot Gladiators!");
@@ -49,9 +58,11 @@ var fight = function() {
         playerHealth = playerHealth - enemyAttack;
     
         //log the result to see if it worked
-        console.log(
-            enemyName + " attacked " + playerName + " for " + enemyAttack + " damage, " + playerName + " now has " + playerHealth + " health remaining."
+        
+        /*console.log(
+            enemyNames + " attacked " + playerName + " for " + enemyAttack + " damage, " + playerName + " now has " + playerHealth + " health remaining."
         );
+        */
     
         if (playerHealth <= 0) {
     
@@ -79,7 +90,7 @@ var fight = function() {
         if (confirmSkip) {
 
                 //confirms the skip and sybtracts the penalty
-                window.alert(playerName + " has cohsen to be a coward.");
+                window.alert(playerName + " has chosen to be a coward.");
 
                 playerMoney = playerMoney - 2;
 
@@ -101,4 +112,9 @@ var fight = function() {
 
 }
 
-fight();
+for (var i = 0; i < enemyNames.length; i++){
+
+    fight(enemyNames[i]);
+
+}
+
