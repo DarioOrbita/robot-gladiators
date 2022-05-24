@@ -100,30 +100,76 @@ var fight = function(enemyName) {
     
 }
 
-for (var i = 0; i < enemyNames.length; i++){
+// function to start a new game
+var startGame = function(){
+    
+    // resets stats.
+    playerHealth = 100;
+    playerAttack = 10;
+    playerMoney = 10;
 
-    // checks if the player is still alive
-    if (playerHealth > 0) {
-
-        //calls out the round number
-        window.alert("Welcome to Robot Gladiators! Round " + ( i + 1 ) );
+    for (var i = 0; i < enemyNames.length; i++){
         
+        // checks if the player is still alive
+        if (playerHealth > 0) {
+
+            //calls out the round number
+            window.alert("Welcome to Robot Gladiators! Round " + ( i + 1 ) );
+            
             //moves through the enemy name array for each round
             var pickedEnemyName = enemyNames[i];
-
+            
             //resets the enemy health to 50 for each new enemy
             enemyHealth = 50;
-        
+            
             // goes through the fight while loop using the next robot in the array.
             fight(pickedEnemyName);
-
-    } else {
-
-        window.alert("You have lost your robot in battle! Game Over!");
-
-        break;
+            
+        } else {
+            
+            window.alert("You have lost your robot in battle! Game Over!");
+            
+            break;
+            
+        }
         
     }
 
+    
+    // play again.
+    endGame();
+
 }
+
+var endGame = function(){
+
+    // if the player is still alive they win
+    if (playerHealth > 0){
+
+        window.alert("Great job, you survived the game! you now have a score of " + playerMoney + ".");
+
+    } else {
+
+        window.alert("You've lost your robot in battle.");
+
+    }
+
+    // ask player if they want to play again
+    var playAgainConfirm = window.confirm("Would you like to play again?");
+
+    if (playAgainConfirm){
+
+        //restart the game
+        startGame();
+
+    } else {
+
+        window.alert("Thank you for playing Robot Gladiators! Come back soon!");
+
+    }
+
+}
+    
+// start the game when the page loads.
+startGame();
 
