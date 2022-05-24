@@ -102,10 +102,28 @@ var fight = function(enemyName) {
 
 for (var i = 0; i < enemyNames.length; i++){
 
-    var pickedEnemyName = enemyNames[i];
-    enemyHealth = 50;
+    // checks if the player is still alive
+    if (playerHealth > 0) {
 
-    fight(pickedEnemyName);
+        //calls out the round number
+        window.alert("Welcome to Robot Gladiators! Round " + ( i + 1 ) );
+        
+            //moves through the enemy name array for each round
+            var pickedEnemyName = enemyNames[i];
+
+            //resets the enemy health to 50 for each new enemy
+            enemyHealth = 50;
+        
+            // goes through the fight while loop using the next robot in the array.
+            fight(pickedEnemyName);
+
+    } else {
+
+        window.alert("You have lost your robot in battle! Game Over!");
+
+        break;
+        
+    }
 
 }
 
