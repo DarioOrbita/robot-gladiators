@@ -35,28 +35,12 @@ var fight = function(enemy) {
     
     while (enemy.health > 0 && playerInfo.health > 0) { 
 
-        //prompts the user to either fight or skip
-        var promptFight = window.prompt("Would you like to FIGHT or SKIP this battle? enter 'FIGHT' or 'SKIP' to choose.");
-    
-        
-        if (promptFight === "SKIP" || promptFight === "skip") {
-        
-            //warning confirmation for skipping
-            var confirmSkip = window.confirm("There will be a penalty of 10g to skip this fight, are you sure you want to skip?");
-            
-            if (confirmSkip) {
-                
-                //confirms the skip and sybtracts the penalty
-                window.alert(playerInfo.name + " has chosen to be a coward.");
-                
-                playerInfo.money = Math.max(0, playerInfo.money - 10);
-                
-                console.log("playerMoney", playerInfo.money);
+        //asks player if they want to skip.
+        if (fightOrSkip) {
 
-                break;
-                
-            }
-            
+            //if true (skip) then break the while loop
+            break;
+
         }
         
         var damage = randomNumber(playerInfo.attack - 3, playerInfo.attack);
@@ -312,6 +296,42 @@ var playerInfo = {
 
   ];
 
+  var fightOrSkip = function() {
+
+    var promptFight = window.prompt('Would you like to FIGHT or SKIP this battle? Enter "FIGHT" or "SKIP" to choose.');
+
+    //sets the entered prompt to fight into lowercase
+    promptFight = promptFight.toLocaleLowerCase();
+
+    if (promptFight === "skip") {
+
+        var confirmSkip = window.confirm("Are you sure you'd like to skip?");
+
+            // Conditional Recursive Function Call
+        if (!promptFight) {
+
+            window.alert("You need to provide a valid answer! Please try again.");
+
+            return fightOrSkip();
+
+        }
+
+        if (confirmSkip) {
+
+            window.alert(playerInfo.name + " has decided to skip this fight. GIT GUD");
+
+            //subtracts money for skipping without going negative
+            playerInfo.money = Math.max(0, playerInfo.money - 10);
+
+            return true;
+
+        }
+
+        return false;
+
+    }
+
+}
 // start the game when the page loads.
 startGame();
 
