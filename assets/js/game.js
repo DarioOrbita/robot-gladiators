@@ -16,7 +16,20 @@ var enemyNames = ["Roborto", "Amy Android", "Robo Trumble"];
 var enemyHealth = Math.floor(Math.random() * 21) + 40;
 var enemyAttack = 12;
 
-window.alert("Welcome to Robot Gladiators!");
+var getPlayerName = function() {
+
+    var name = "";
+
+    while(name === "" || name === null) {
+
+        name = prompt("What is your robot's name")
+    }
+
+    console.log("Your robot's name is " + name);
+
+    return name;
+
+}
 
 var fight = function(enemy) {
     
@@ -156,7 +169,7 @@ var endGame = function() {
     // if the player is still alive they win
     if (playerInfo.health > 0){
 
-        window.alert("Great job, you survived the game! you now have a score of " + playerMoney + ".");
+        window.alert("Great job, you survived the game! you now have a score of " + playerInfo.money + ".");
 
     } else {
 
@@ -231,7 +244,7 @@ var randomNumber = function(min, max) {
 //initializing all player values
 var playerInfo = {
 
-    name: window.prompt("What is your robot's name?"),
+    name: getPlayerName(),
     health: 100,
     attack: 10,
     money: 10,
